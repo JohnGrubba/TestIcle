@@ -1,0 +1,52 @@
+<script src="script/tests.js" type="text/javascript"></script>
+
+
+<div id="anim" hidden>
+  <div class="loader" id="loader">
+    <h1>Building your PDF...</h1>
+    <div class="loader-inner">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <h2>This may take a moment</h2>
+  </div>
+</div>
+
+
+<div class="flex">
+  <div class="main_container">
+    <h1>Tests</h1>
+    <input style="width: 100%" placeholder="Search Test..." id="search_input" oninput="search_test()"
+      required="required" type="text"><br><br><br>
+    <table id="test_list" class="list">
+    </table>
+    <p class="placehold">No Entries</p>
+  </div>
+
+  <div class="main_container">
+    <h1>Generate Test</h1>
+    <form onsubmit="return false;">
+      <label for="test-title">Test Title<span class="required">*</span></label>
+      <input type="text" id="testtitle" name="test-title" required>
+
+      <label for="test-date">Test Date<span class="required">*</span></label>
+      <input type="date" id="testdate" name="test-date" required>
+
+      <label for="test-date">Upload Logo</label>
+      <input type="file" accept="image/*" id="logo" name="test-date">
+
+      <label for="topics">Topics<span class="required">*</span></label>
+      <select id="topics" required multiple>
+      </select>
+
+      <label for="test-date">Questions per Type<span class="required">*</span></label>
+      <input type="number" min="0" oninput="validity.valid||(value='');" id="questionslimit" name="questionslimit"
+        required>
+      <br>
+
+      <button type="submit" onclick="GenerateTest()">Generate</button>
+    </form>
+  </div>
+  </form>
+</div>

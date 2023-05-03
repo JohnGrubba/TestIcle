@@ -1,0 +1,8 @@
+**.sqlite
+**node_modules/
+**package-lock.json
+**.pdf
+*.png
+!**/examples/**
+**.log
+!static/**

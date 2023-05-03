@@ -1,0 +1,78 @@
+<script src="script/questions.js" type="text/javascript"></script>
+<div class="flex">
+  <div class="main_container">
+    <h1>Add Question</h1>
+    <form onsubmit="return false;">
+      <label for="question-title">Question Title<span class="required">*</span></label>
+      <input type="text" id="questiontitle" name="question-title" required>
+
+      <label for="question">Question<span class="required">*</span></label>
+      <textarea id="q_text" name="question" required></textarea>
+
+      <label for="question-type">Question Type<span class="required">*</span></label>
+      <select oninput="changeQuestionType()" id="questiontype" name="question-type" required>
+        <option disabled selected value> -- select an option -- </option>
+        <option value="mult">Multiple Choice</option>
+        <option value="txt">Text Question</option>
+      </select>
+
+      <div id="txt" hidden>
+        <br>
+        <label for="question-title">Example Answer</label><br>
+        <textarea id="ex_ans" name="questionexans" style="width: 100%"></textarea>
+      </div>
+      <br>
+      <div id="mult" hidden>
+        <button type="button" onclick="addChoice()">Add Choice</button>
+        <div id="answers-mult">
+          <div class="answer">
+            <input type="checkbox"><input type="text" placeholder="Example Answer" required><button>Remove</button>
+          </div>
+        </div>
+      </div><br>
+
+      <label for="points">Points<span class="required">*</span></label>
+      <input type="number" id="points" name="points" min="0" oninput="validity.valid||(value='');" required>
+
+      <label for="subject">Topic<span class="required">*</span></label>
+      <select id="topics" required>
+      </select>
+      <br>
+
+      <button type="submit" onclick="AddQuestion()">Submit</button>
+    </form>
+  </div>
+
+  <div class="main_container">
+    <h1>Questions</h1>
+    <input type="text" style="width: 100%" placeholder="Search query..." id="search_input" oninput="questionSearch()"
+      required="required"><br><br>
+    <h2>Text Questions</h2>
+
+    <div class="list_container">
+      <table id="txtquestions" class="list">
+      </table>
+      <p class="placehold">No Entries</p>
+    </div>
+
+    <h2>Multiple Choice Questions</h2>
+    <div class="list_container">
+      <table id="multquestions" class="list">
+      </table>
+      <p class="placehold">No Entries</p>
+    </div>
+
+    <div id="modify-popup" hidden>
+      <h2>Modify Question Title</h2>
+      <input id="modify-input-title" required="required" type="text">
+      <br>
+      <h2>Modify Question</h2>
+      <input id="modify-input-question" required="required" type="text">
+      <br>
+      <h2>Modify Points</h2>
+      <input type="number" min="0" oninput="validity.valid||(value='');" id="modify-input-points" required><br><br>
+      <button onclick="sendModifyRequest()">Modify</button>
+      <button onclick="document.getElementById('modify-popup').toggleAttribute('hidden')">Cancel</button>
+    </div>
+  </div>
+</div>

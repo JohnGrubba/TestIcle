@@ -1,0 +1,29 @@
+<script src="script/subjects.js" type="text/javascript"></script>
+
+<div class="flex">
+  <div class="main_container">
+    <h1>Search / Add Subject</h1>
+    <form onsubmit="return false;">
+      <label for="subjectname">Subject Name<span class="required">*</span></label>
+      <input id="add_input" required="required" type="text">
+      <br>
+      <button onclick="AddSubject()" type="submit">Add Subject</button>
+    </form>
+
+    <div id="modify-popup" hidden>
+      <h2>Modify Subject Name</h2>
+      <input id="modify-input" required type="text">
+      <button onclick="sendModifyRequest()">Modify</button>
+      <button onclick="document.getElementById('modify-popup').toggleAttribute('hidden')">Cancel</button>
+    </div>
+  </div>
+
+  <div class="main_container">
+    <h1>Subjects</h1>
+    <input style="width: 100%" placeholder="Search query..." id="search_input" oninput="search()" required
+      type="text"><br><br><br>
+    <table id="list" class="list">
+    </table>
+    <p class="placehold">No Entries</p>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            border-bottom: 2px solid #000;
+            text-align: right;
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            color: #494949;
+            margin-top: 0;
+            text-align: right;
+        }
+
+        .question {
+            border: 1px solid #000000;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .answer-placeholder {
+            margin-top: 20px;
+            width: 100%;
+            height: 200px;
+            border: 1px solid #707070;
+        }
+
+        h3 {
+            border-bottom: 1px solid #707070;
+            margin: 0;
+        }
+
+        .question {
+            page-break-inside: avoid;
+        }
+
+        .question+div.page-break {
+            page-break-after: auto;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+        }
+
+        table {
+            border: none;
+            border-collapse: collapse;
+            border-top: 1px solid #000;
+            width: 100%;
+        }
+
+        tr {
+            border-top: 1px solid #000;
+        }
+
+        table:last-of-type {
+            border-bottom: 1px solid #000;
+        }
+
+        table td,
+        table th {
+            text-align: left;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            padding: 10px;
+        }
+
+        h3 a {
+            float: right;
+        }
+
+        .grading {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <img style="float: left;" height="40px" src="{logo}" onerror="this.style.display='none'">
+    <h1>{title}</h1>
+    <h2>{subject} - {date}</h2>
+    <table>
+        <col width="20%">
+        <col width="80%">
+        <thead>
+            <th>Name</th>
+            <th></th>
+        </thead>
+    </table>
+    <table>
+        <col width="80%">
+        <col width="20%">
+        <tbody>
+            <tr>
+                <td>Points</td>
+                <td style="text-align: right; padding-bottom: 0; font-size: 1.2em;">______ / {points}</td>
+            </tr>
+            <tr>
+                <td>Grade</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="grading">
+        {grading_sheet}
+    </div>
+
+    <br>
+    {questions}
+</body>
+
+</html>

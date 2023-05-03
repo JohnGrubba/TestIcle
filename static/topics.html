@@ -1,0 +1,32 @@
+<script src="script/topics.js" type="text/javascript"></script>
+
+<div class="flex">
+    <div class="main_container">
+        <h1>Search / Add Topic</h1>
+        <form onsubmit="return false;">
+            <label for="topicname">Topic Name<span class="required">*</span></label>
+            <input id="add_input" required type="text">
+            <label for="subjects">Subject<span class="required">*</span></label>
+            <select id="subjects" required>
+            </select>
+            <br>
+            <button onclick="AddTopic()" type="submit">Add Topic</button>
+        </form>
+
+        <div id="modify-popup" hidden>
+            <h2>Modify Topic Name</h2>
+            <input id="modify-input" required type="text">
+            <button onclick="sendModifyRequest()">Modify</button>
+            <button onclick="document.getElementById('modify-popup').toggleAttribute('hidden')">Cancel</button>
+        </div>
+    </div>
+
+    <div class="main_container">
+        <h1>Topics</h1>
+        <input style="width: 100%" placeholder="Search query..." id="search_input" oninput="search()"
+            required="required" type="text"><br><br><br>
+        <table id="list" class="list">
+        </table>
+        <p class="placehold">No Entries</p>
+    </div>
+</div>

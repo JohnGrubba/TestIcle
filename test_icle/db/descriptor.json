@@ -1,0 +1,65 @@
+[
+    {
+        "tablename": "TextQuestions",
+        "autoincrements": [
+            {
+                "name": "questionID"
+            }
+        ]
+    },
+    {
+        "tablename": "MultipleChoice",
+        "autoincrements": [
+            {
+                "name": "questionID"
+            }
+        ]
+    },
+    {
+        "tablename": "MultipleChoiceAnswers"
+    },
+    {
+        "tablename": "Subject",
+        "autoincrements": [
+            {
+                "name": "ID"
+            }
+        ]
+    },
+    {
+        "tablename": "Tests",
+        "autoincrements": [
+            {
+                "name": "ID"
+            }
+        ]
+    },
+    {
+        "tablename": "TestMultipleChoice"
+    },
+    {
+        "tablename": "TestTextQuestions"
+    },
+    {
+        "tablename": "TestUploads"
+    },
+    {
+        "tablename": "Uploads",
+        "autoincrements": [
+            {
+                "name": "ID"
+            }
+        ]
+    },
+    {
+        "tablename": "Topics",
+        "autoincrements": [
+            {
+                "name": "ID"
+            }
+        ]
+    },
+    {
+        "tablename": "TestTopics"
+    }
+]
