@@ -5,7 +5,7 @@ import fs from "fs";
 import chalk from "chalk";
 import { TestIcle } from "./test_icle/test_icle.js";
 
-const port = 80;
+const port = process.env.PORT || 8080;
 const app = express();
 const testicle_api = new TestIcle();
 const log_path = "logs/generallog.log";
