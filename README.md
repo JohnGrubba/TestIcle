@@ -9,6 +9,13 @@
 ## How do you do it?
 - We combined our expertise to provide the best and stablest Concept out there. By using SQLite3, Node and Express we have a solid basis for almost everything.
 > We even made many things easily maintainable
+
+## How do the Tests look like?
+[Example Test 1](./test_icle/examples/test1.pdf)<br>
+[Example Test 1 Corrected](./test_icle/examples/test1_corrected.pdf)<br>
+[Example Test 2](./test_icle/examples/test2.pdf)<br>
+[Example Test 2 Corrected](./test_icle/examples/test2_corrected.pdf)
+
 ## Can i improve it?
 - Sure just open a Pull Request and show us your ideas!
 
