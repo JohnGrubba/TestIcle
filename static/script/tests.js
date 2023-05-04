@@ -121,6 +121,7 @@ async function GenerateTest() {
     const topic_id = $('#topics')
     const txt_limit = document.getElementById("textlimit")
     const mult_limit = document.getElementById("multlimit")
+    const grading_sheet = document.getElementById("grdsht")
 
     const payload = {
         title: title.value,
@@ -128,7 +129,8 @@ async function GenerateTest() {
         topics: topic_id.val().map(i => Number(i)),
         logo: logo_b64,
         txt_limit: Number.parseInt(txt_limit.value),
-        mult_limit: Number.parseInt(mult_limit.value)
+        mult_limit: Number.parseInt(mult_limit.value),
+        gradingsheet: Number.parseInt(grading_sheet.value)
     }
 
     fetch("/api/createTest", {
@@ -154,6 +156,7 @@ function refresh() {
     addCollapsibleFunction();
     loadTopics();
     loadTests();
+    loadGradingSheet();
 }
 
 refresh();

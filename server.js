@@ -91,6 +91,7 @@ app.put("/api/createTest", async (req, res) => {
   const limit_mult = req.body.mult_limit == 0 ? null : req.body.mult_limit;
   const limit_txt = req.body.txt_limit == 0 ? null : req.body.txt_limit;
   const topics = req.body.topics;
+  const grading = req.body.gradingsheet;
   var multiple_choice = []
   if (limit_mult != null) {
     multiple_choice = await testicle_api
@@ -109,7 +110,7 @@ app.put("/api/createTest", async (req, res) => {
         res.status(400).write("Limit was of unallowed size");
       });
   }
-  const content = [title, date, logo].map((element) =>
+  const content = [title, date, logo, grading].map((element) =>
     element ? element : null
   );
 

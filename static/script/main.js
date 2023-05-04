@@ -70,6 +70,24 @@ function loadSubjects() {
     });
 }
 
+function loadGradingSheet() {
+    var gradingSheet = "<option disabled selected value> -- select an option -- </option>";
+    fetch('/api/getGrading', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        return response.json()
+    }).then(data => {
+        console.log(data)
+        data.forEach(gsh => {
+            gradingSheet += `<option value="${gsh.ID}">${gsh.name}</option>`
+        });
+        document.getElementById("grdsht").innerHTML = gradingSheet;
+    });
+}
+
 function loadTopics() {
     var topics = "<option disabled selected value> -- select an option -- </option>";
     fetch('/api/getTopics', {
