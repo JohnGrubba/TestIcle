@@ -45,7 +45,6 @@ CREATE TABLE IF NOT EXISTS GradingEntry(
     grade TEXT NOT NULL,
     PRIMARY KEY (gradingSheetID, percentage)
 );
-)
 CREATE TABLE IF NOT EXISTS TestMultipleChoice (
     testID INTEGER NOT NULL REFERENCES Tests(ID) ON DELETE CASCADE,
     multipleChoiceID INTEGER NOT NULL REFERENCES MultipleChoice(questionID) ON DELETE CASCADE,

@@ -88,21 +88,27 @@ app.put("/api/createTest", async (req, res) => {
   const title = req.body.title;
   const date = req.body.date;
   const logo = req.body.logo;
-  const limit = req.body.question_limit;
+  const limit_mult = req.body.mult_limit == 0 ? null : req.body.mult_limit;
+  const limit_txt = req.body.txt_limit == 0 ? null : req.body.txt_limit;
   const topics = req.body.topics;
-  const multiple_choice = await testicle_api
-    .GetRandomMultQuestions(limit, topics)
-    .catch((err) => {
-      log(err);
-      res.status(400).write("Limit was of unallowed size");
-    });
-  const text_questions = await testicle_api
-    .GetRandomTextQuestions(limit, topics)
-    .catch((err) => {
-      log(err);
-      res.status(400).write("Limit was of unallowed size");
-    });
-
+  var multiple_choice = []
+  if (limit_mult != null) {
+    multiple_choice = await testicle_api
+      .GetRandomMultQuestions(limit_mult, topics)
+      .catch((err) => {
+        log(err);
+        res.status(400).write("Limit was of unallowed size");
+      });
+  }
+  var text_questions = []
+  if (limit_txt != null) {
+    text_questions = await testicle_api
+      .GetRandomTextQuestions(limit_txt, topics)
+      .catch((err) => {
+        log(err);
+        res.status(400).write("Limit was of unallowed size");
+      });
+  }
   const content = [title, date, logo].map((element) =>
     element ? element : null
   );
