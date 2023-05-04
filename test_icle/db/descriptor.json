@@ -61,5 +61,13 @@
     },
     {
         "tablename": "TestTopics"
+    },
+    {
+        "tablename": "GradingSheets",
+        "autoincrements": [
+            {
+                "name": "ID"
+            }
+        ]
     }
 ]
