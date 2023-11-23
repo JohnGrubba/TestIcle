@@ -88,22 +88,29 @@ app.put("/api/createTest", async (req, res) => {
   const title = req.body.title;
   const date = req.body.date;
   const logo = req.body.logo;
-  const limit = req.body.question_limit;
+  const limit_mult = req.body.mult_limit == 0 ? null : req.body.mult_limit;
+  const limit_txt = req.body.txt_limit == 0 ? null : req.body.txt_limit;
   const topics = req.body.topics;
-  const multiple_choice = await testicle_api
-    .GetRandomMultQuestions(limit, topics)
-    .catch((err) => {
-      log(err);
-      res.status(400).write("Limit was of unallowed size");
-    });
-  const text_questions = await testicle_api
-    .GetRandomTextQuestions(limit, topics)
-    .catch((err) => {
-      log(err);
-      res.status(400).write("Limit was of unallowed size");
-    });
-
-  const content = [title, date, logo].map((element) =>
+  const grading = req.body.gradingsheet;
+  var multiple_choice = []
+  if (limit_mult != null) {
+    multiple_choice = await testicle_api
+      .GetRandomMultQuestions(limit_mult, topics)
+      .catch((err) => {
+        log(err);
+        res.status(400).write("Limit was of unallowed size");
+      });
+  }
+  var text_questions = []
+  if (limit_txt != null) {
+    text_questions = await testicle_api
+      .GetRandomTextQuestions(limit_txt, topics)
+      .catch((err) => {
+        log(err);
+        res.status(400).write("Limit was of unallowed size");
+      });
+  }
+  const content = [title, date, logo, grading].map((element) =>
     element ? element : null
   );
 
@@ -152,6 +159,38 @@ app.put("/api/createTest", async (req, res) => {
   }
 });
 
+app.put("/api/createGrading", async (req, res) => {
+  const sheet_name = req.body.sheet_name;
+  const grading = req.body.grading;
+
+  if (!sheet_name || !grading) {
+    res.status(400).send("Not all needed Elements were supplied").end();
+    return;
+  }
+  try {
+    await testicle_api.CreateGrading(sheet_name, grading);
+    res.status(204).end();
+  } catch (err) {
+    log(err, log_types.WARNING);
+    res.status(400).send("Not all needed elements were supplied").end();
+  }
+})
+
+app.get("/api/getGrading", async (req, res) => {
+  try {
+    let data = await testicle_api.GetGrading();
+    for (let element of data) {
+      element["Modify"] = element["ID"];
+      element["Delete"] = element["ID"];
+    }
+    res.writeHead(200, JSON_HEADER);
+    res.write(JSON.stringify(data));
+  } catch (err) {
+    log(err, log_types.WARNING);
+    res.writeHead(400).write("Can't get from database");
+  }
+  res.end();
+})
 
 app.post("/api/modifyRandomTextQuestion", async (req, res) => {
   try {

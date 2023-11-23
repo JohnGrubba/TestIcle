@@ -521,4 +521,40 @@ export class TestIcle {
       .filter((entry) => entry != undefined);
     return { multipleChoiceID: allowed[0] };
   }
+
+  async CreateGrading(sheet_name, grading) {
+    const grading_id = await tests_db.InsertIntoDB(
+      globals.GRADING_TN,
+      [sheet_name],
+      true
+    );
+    for (let grade in grading) {
+      await tests_db.InsertIntoDB(globals.GRADING_ENTRY_TN,
+        [grading_id, Number.parseInt(grade), grading[grade]]
+      );
+    }
+  }
+
+  async GetGrading() {
+    const grading = await tests_db.SelectFromDB(
+      globals.GRADING_TN,
+      ["GradingSheets.ID", "GradingSheets.name"],
+      undefined,
+      undefined,
+      undefined,
+      true
+    );
+    for (let sheet of grading) {
+      const entries = await tests_db.SelectFromDB(
+        globals.GRADING_ENTRY_TN,
+        ["GradingEntry.percentage", "GradingEntry.grade"],
+        [{ "GradingEntry.gradingSheetID": sheet["ID"] }],
+        undefined,
+        undefined,
+        true
+      );
+      sheet["entries"] = entries;
+    }
+    return grading;
+  }
 }

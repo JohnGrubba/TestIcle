@@ -40,9 +40,17 @@
       <select id="topics" required multiple>
       </select>
 
-      <label for="test-date">Questions per Type<span class="required">*</span></label>
-      <input type="number" min="0" oninput="validity.valid||(value='');" id="questionslimit" name="questionslimit"
+      <label for="test-date">Multiple Choice Questions<span class="required">*</span></label>
+      <input type="number" value="0" min="0" oninput="validity.valid||(value='');" id="multlimit" name="questionslimit"
         required>
+
+      <label for="test-date">Text Questions<span class="required">*</span></label>
+      <input type="number" value="0" min="0" oninput="validity.valid||(value='');" id="textlimit" name="questionslimit"
+        required>
+
+      <label for="topics">Grading Sheet</label>
+      <select id="grdsht">
+      </select>
       <br>
 
       <button type="submit" onclick="GenerateTest()">Generate</button>

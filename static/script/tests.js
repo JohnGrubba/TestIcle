@@ -119,14 +119,18 @@ async function GenerateTest() {
     const file = document.getElementById("logo")
     const logo_b64 = file.files[0] != undefined ? await toBase64(file.files[0]) : undefined
     const topic_id = $('#topics')
-    const limit_questions = document.getElementById("questionslimit")
+    const txt_limit = document.getElementById("textlimit")
+    const mult_limit = document.getElementById("multlimit")
+    const grading_sheet = document.getElementById("grdsht")
 
     const payload = {
         title: title.value,
         date: date.value,
         topics: topic_id.val().map(i => Number(i)),
         logo: logo_b64,
-        question_limit: Number.parseInt(limit_questions.value)
+        txt_limit: Number.parseInt(txt_limit.value),
+        mult_limit: Number.parseInt(mult_limit.value),
+        gradingsheet: Number.parseInt(grading_sheet.value)
     }
 
     fetch("/api/createTest", {
@@ -142,7 +146,8 @@ async function GenerateTest() {
         date.value = "";
         file.files = null;
         topic_id.value = "";
-        limit_questions.value = "";
+        txt_limit.value = "";
+        mult_limit.value = "";
         refresh();
     })
 }
@@ -151,6 +156,7 @@ function refresh() {
     addCollapsibleFunction();
     loadTopics();
     loadTests();
+    loadGradingSheet();
 }
 
 refresh();

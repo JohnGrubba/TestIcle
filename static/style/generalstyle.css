@@ -646,3 +646,22 @@ input[type=checkbox]:disabled {
 #modify-popup input {
   background-color: rgb(169, 169, 169);
 }
+
+.gradestyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 8px;
+  background-color: #97979776;
+  border-radius: 5px;
+}
+
+.gprt {
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(to right, green 70%, white 30%);
+  margin: 5px;
+}

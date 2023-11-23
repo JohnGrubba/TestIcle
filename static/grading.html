@@ -1,0 +1,41 @@
+<script src="script/grading.js" type="text/javascript"></script>
+
+<div class="flex">
+    <div class="main_container">
+        <h1>Search / Add Grading Sheet</h1>
+        <form onsubmit="return false;">
+            <label for="gradingname">Grading Sheet Name<span class="required">*</span></label>
+            <input id="gradingname" required="required" type="text">
+            <br>
+            <button type="button" onclick="addGradingEntry()">Add Range</button>
+            <div id="gradingentrys">
+                <div class="grading-entry gradestyle">
+                    <label for="temp">Choose Min % for Grade</label><br />
+                    <input type="text" class="grade-name" placeholder="Grade..." required>
+                    <input type="range" style="width: 100%" list="markers" class="grdval" required />
+
+                    <datalist id="markers">
+                        <option value="0"></option>
+                        <option value="50"></option>
+                        <option value="60"></option>
+                        <option value="70"></option>
+                        <option value="80"></option>
+                        <option value="90"></option>
+                        <option value="100"></option>
+                    </datalist>
+                    <p>Min Percentage: <output class="slider_out"></output>%</p>
+                </div>
+            </div>
+            <button type="submit" onclick="serialize()">Add Grading Sheet</button>
+        </form>
+    </div>
+
+    <div class="main_container">
+        <h1>Grading Sheets</h1>
+        <input style="width: 100%" placeholder="Search query..." id="search_input" oninput="search()" required
+            type="text"><br><br><br>
+        <table id="list" class="list">
+        </table>
+        <p class="placehold">No Entries</p>
+    </div>
+</div>
